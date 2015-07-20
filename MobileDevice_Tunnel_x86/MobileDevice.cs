@@ -30,7 +30,12 @@ namespace MobileDevice_Tunnel
                                 @"\Apple\Mobile Device Support\bin";
                 if (!File.Exists(directoryName + @"\iTunesMobileDevice.dll"))
                 {
-                    directoryName = @"C:\Program Files\Apple\Mobile Device Support\bin";
+                    directoryName = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles) +
+                                @"\Apple\Mobile Device Support";
+                    if (!File.Exists(directoryName + @"\iTunesMobileDevice.dll"))
+                    {
+                        directoryName = @"C:\Program Files\Apple\Mobile Device Support\bin";
+                    }
                 }
             }
             Environment.SetEnvironmentVariable("Path",

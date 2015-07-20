@@ -20,9 +20,10 @@ namespace iphone_tunnel_usbmux
                 iphone = new iPhone();
                 Console.WriteLine("初始化MobileDevice成功");
             }
-            catch
+            catch (Exception e)
             {
                 Console.WriteLine("初始化MobileDevice失败。请检查iTunes是否正常安装");
+                Console.WriteLine("错误信息:{0}", e.Message);
                 Console.Read();
                 return;
             }

@@ -10,12 +10,24 @@ namespace iphone_tunnel_usbmux
 {
     class Program
     {
-        private static iPhone iphone = new iPhone();
+        private static iPhone iphone;
         static int port = 22;
         private static int ThreadCount = 0;
         static void Main(string[] args)
         {
             Console.WriteLine("欢迎使用由威锋技术组(WeiPhone Tech Team)出品的iOS SSH隧道映射工具");
+            try
+            {
+                iphone = new iPhone();
+                Console.WriteLine("初始化MobileDevice成功");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("初始化MobileDevice失败。请检查iTunes是否正常安装");
+                Console.WriteLine("错误信息:{0}", e.Message);
+                Console.Read();
+                return;
+            }
             Console.Write("请输入待映射的本机端口号，不输入则默认本机端口22：");
             string sport=Console.ReadLine();
             port = 22;
